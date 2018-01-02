@@ -1,4 +1,5 @@
 ﻿INSERT INTO pessoa (nome, ativo) VALUES ('Cláudio', true);
 INSERT INTO pessoa (nome, ativo, bairro,cep, cidade, estado, logradouro, numero) VALUES ('José', true, 'Centro', 74000000, 'Goiânia', 'GO', 'Rua do José', '77');
 INSERT INTO pessoa (nome, ativo, bairro,cep, cidade, estado, logradouro, numero) VALUES ('Maria', true, 'Centro', 75000000, 'Goiânia', 'GO', 'Rua da Maria', '75');
-INSERT INTO pessoa (nome, ativo, bairro,cep, cidade, estado, logradouro, numero) VALUES ('João', true, 'Vila Nova', 75100000, 'Goiânia', 'GO', 'Rua do Joao', '77');
+INSERT INTO pessoa (nome, ativo, bairro,cep, cidade, estado, logradouro, numero) VALUES ('João', true, 'Vila Nova', 75100000, 'Goiânia', 'GO', 'Rua do Joao', '74');
+INSERT INTO pessoa (nome, ativo, bairro,cep, cidade, estado, logradouro, numero) VALUES ('Val', true, 'Centro', 76200000, 'Guapó', 'GO', 'Rua da val', '07');
