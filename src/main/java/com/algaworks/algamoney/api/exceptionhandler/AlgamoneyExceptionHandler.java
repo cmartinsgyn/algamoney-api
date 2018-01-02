@@ -23,6 +23,7 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler{
     @Autowired
     private MessageSource messageSource;
 
+    /**Exceptions no caso de envio de parâmetros que não estão no model*/
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -34,6 +35,7 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler{
 
     }
 
+    /**caso de validação de nulos e blank ou não válidos*/
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<Erro> erros = criarListaErros(ex.getBindingResult());
