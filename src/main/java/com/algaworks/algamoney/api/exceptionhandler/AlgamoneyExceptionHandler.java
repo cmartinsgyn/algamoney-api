@@ -27,7 +27,7 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler{
     @Autowired
     private MessageSource messageSource;
 
-    /**Exceptions no caso de envio de parâmetros que não estão no model*/
+        /**Exceptions no caso de envio de parâmetros que não estão no model*/
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -39,15 +39,15 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler{
 
     }
 
-    /**caso de validação de nulos e blank ou não válidos*/
+        /**caso de validação de nulos e blank ou não válidos*/
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<Erro> erros = criarListaErros(ex.getBindingResult());
         return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
     }
 
-    /**tratando excessão de resposta a tentativa de excluir item não existente, ou seja
-     * direto nas excessões, mas poderia ser numa classe de serviço ou regra de negócio*/
+        /**tratando excessão de resposta a tentativa de excluir item não existente, ou seja
+         * direto nas excessões, mas poderia ser numa classe de serviço ou regra de negócio*/
     @ExceptionHandler({EmptyResultDataAccessException.class})
     public ResponseEntity<Object> EmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request){
         String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado", null, LocaleContextHolder.getLocale());

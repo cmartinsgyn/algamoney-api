@@ -44,5 +44,10 @@ public class CategoriaResource {
         return categoria != null ? ResponseEntity.ok(categoria) : ResponseEntity.notFound().build();
     }
 
+    @DeleteMapping("/{codigo}")
+    public void remover(@PathVariable Long codigo){
+        categoriaRepository.delete(codigo);
+    }
+
 
 }// end class
