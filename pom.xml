@@ -22,6 +22,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<commons.log>3.4</commons.log>
+		<postgree>9.4-1206-jdbc42</postgree>
 	</properties>
 
 	<dependencies>
@@ -47,8 +49,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.4-1206-jdbc42</version>
-
+			<version>${postgree}</version>
 		</dependency>
 
 		<!-- Hibernate Java 8 Support -->
@@ -57,23 +58,31 @@
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
 
+		<!-- Migracoes - Flyway -->
+		<!--<dependency>-->
+		<!--<groupId>org.flywaydb</groupId>-->
+		<!--<artifactId>flyway-core</artifactId>-->
+		<!--</dependency>-->
+
 		<!-- Suporte do Jackson para as datas do Java 8 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
-		<!-- Migracoes - Flyway -->
-		<!--<dependency>-->
-			<!--<groupId>org.flywaydb</groupId>-->
-			<!--<artifactId>flyway-core</artifactId>-->
-		<!--</dependency>-->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!--ver a raíz das exceptions-->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons.log}</version>
+		</dependency>
+
 		<!--lombok - gera getters and setters-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
