@@ -71,11 +71,11 @@ public class LancamentoResource {
     }
 
 
-//    @DeleteMapping("/{codigo}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void remover (@PathVariable Long codigo){
-//        lancamentoRepository.delete(codigo);
-//    }
+    @DeleteMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover (@PathVariable Long codigo){
+        lancamentoRepository.delete(codigo);
+    }
 
 //    @PutMapping("/{codigo}")
 //    public ResponseEntity<Lancamento>atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento Lancamento){
