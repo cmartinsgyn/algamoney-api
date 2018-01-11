@@ -38,17 +38,29 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 
         List<Predicate> predicates = new ArrayList<>();
 
-        if(!StringUtils.isEmpty(lancamentoFilter.getDescricao() != null)){
+        if(!StringUtils.isEmpty(lancamentoFilter.getDescricao())){
             predicates.add(builder.like(
                     builder.lower(root.get("descricao")), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"
             ));
+        }
 
-
-        } if(lancamentoFilter.getDataVencimentoDe() != null){
-
-        } if(lancamentoFilter.getDataVencimentoAte() != null){
+        if(lancamentoFilter.getDataVencimentoDe() != null){
+            predicates.add(
+                    builder.greaterThanOrEqualTo(root.get("dataVencimento"), lancamentoFilter.getDataVencimentoDe()));
 
         }
+
+        if(lancamentoFilter.getDataVencimentoAte() != null){
+            predicates.add(
+                    builder.lessThanOrEqualTo(root.get("dataVencimento"), lancamentoFilter.getDataVencimentoAte()));
+        }
+
+        if(lancamentoFilter.getTipoLancamento() != null){
+            predicates.add(
+                    builder.lessThanOrEqualTo(root.get("tipo"), lancamentoFilter.getTipoLancamento()));
+        }
+
+
 
         return predicates.toArray(new Predicate[predicates.size()]);
 

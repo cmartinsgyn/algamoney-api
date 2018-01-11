@@ -1,9 +1,18 @@
 package com.algaworks.algamoney.api.repository.filter;
 
+import com.algaworks.algamoney.api.model.TipoLancamento;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class LancamentoFilter {
 
     private String descricao;
@@ -14,27 +23,7 @@ public class LancamentoFilter {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataVencimentoAte;
 
-    public String getDescricao() {
-        return descricao;
-    }
+    private TipoLancamento tipoLancamento;
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
 
-    public LocalDate getDataVencimentoDe() {
-        return dataVencimentoDe;
-    }
-
-    public void setDataVencimentoDe(LocalDate dataVencimentoDe) {
-        this.dataVencimentoDe = dataVencimentoDe;
-    }
-
-    public LocalDate getDataVencimentoAte() {
-        return dataVencimentoAte;
-    }
-
-    public void setDataVencimentoAte(LocalDate dataVencimentoAte) {
-        this.dataVencimentoAte = dataVencimentoAte;
-    }
 }

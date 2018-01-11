@@ -41,6 +41,11 @@ public class LancamentoResource {
         return lancamentoRepository.filtrar(lancamentoFilter);
     }
 
+    @GetMapping("/listar")
+    public List<Lancamento> listar(){
+        return lancamentoRepository.findAll();
+    }
+
 
     @GetMapping("/{codigo}")
     public ResponseEntity<Lancamento> buscarPeloCodigo(@PathVariable Long codigo){
