@@ -27,26 +27,5 @@ public class LancamentoService {
         return lancamentoRepository.save(lancamento);
     }
 
-    private Lancamento buscarLancamentoPeloCodigo(Long codigo) {
-        Lancamento LancamentoSalva = lancamentoRepository.findOne(codigo);
-        if(LancamentoSalva == null){
-            throw new EmptyResultDataAccessException(1);
-        }
-        return LancamentoSalva;
-    }
 
-
-    //        lancamentoRepository.save(LancamentoSalva);
-    //        LancamentoSalva.setAtivo(ativo);
-    //        Lancamento LancamentoSalva = buscarLancamentoPeloCodigo(codigo);
-    //    public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
-    //
-    //    }
-    //
-    //        return lancamentoRepository.save(LancamentoSalva);
-    //        BeanUtils.copyProperties(Lancamento, LancamentoSalva, "codigo");
-    //        Lancamento LancamentoSalva = buscarLancamentoPeloCodigo(codigo);
-//    public Lancamento atualizar(Long codigo, Lancamento Lancamento){
-
-//    }
 }
