@@ -82,9 +82,16 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<!--gerar o token-->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
+		</dependency>
+
+		<!--gerenciar o jason web token-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
 		</dependency>
 
 		<!--ver a raíz das exceptions-->
