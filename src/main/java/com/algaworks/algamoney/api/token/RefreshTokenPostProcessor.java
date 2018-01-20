@@ -7,6 +7,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.http.server.ServletServerHttpResponse;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
@@ -30,14 +31,12 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
         HttpServletRequest req = ((ServletServerHttpRequest)request).getServletRequest();
         HttpServletResponse resp = ((ServletServerHttpResponse)response).getServletResponse();
 
+        DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
         String refreshToken = body.getRefreshToken().getValue();
         adicionarRefreshTokenNoCookie(refreshToken, req, resp);
+        removerRefreshTokenBody(token);
 
-
-        //parei: 12 minutos
-        // implementar o postman. ver aula 6.6
-
-        return null;
+        return body;
     }
 
     private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
@@ -50,5 +49,9 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
         resp.addCookie(refreshTokenCookie);
 
 
+    }
+
+    private void removerRefreshTokenBody(DefaultOAuth2AccessToken token) {
+        token.setRefreshToken(null);
     }
 }
