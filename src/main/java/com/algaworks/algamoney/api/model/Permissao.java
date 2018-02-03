@@ -19,7 +19,6 @@ public class Permissao {
 
     @Id
     private Long codigo;
-
-
+    private String descricao;
 
 }
