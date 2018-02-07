@@ -2,6 +2,7 @@ package com.algaworks.algamoney.api.repository.lancamento;
 
 import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.repository.filter.LancamentoFilter;
+import com.algaworks.algamoney.api.repository.projection.ResumoLancamento;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,24 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
         criteria.where(predicates);
 
         TypedQuery<Lancamento> query = manager.createQuery(criteria);
+        adicionarRestricoesDePaginacao(query, pageable);
+        return new PageImpl<>(query.getResultList(), pageable, total(lancamentoFilter));
+    }
+
+    @Override
+    public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<ResumoLancamento> criteria = builder.createQuery(ResumoLancamento.class);
+
+        Root<Lancamento> root = criteria.from(Lancamento.class);
+        criteria.select(builder.construct(ResumoLancamento.class
+                ,root.get("descricao")
+        ));
+
+        Predicate[] predicates= criarRestricoes(lancamentoFilter, builder, root);
+        criteria.where(predicates);
+
+        TypedQuery<ResumoLancamento> query = manager.createQuery(criteria);
         adicionarRestricoesDePaginacao(query, pageable);
         return new PageImpl<>(query.getResultList(), pageable, total(lancamentoFilter));
     }
@@ -69,7 +88,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 
     }
 
-    private void adicionarRestricoesDePaginacao(TypedQuery<Lancamento> query, Pageable pageable) {
+    private void adicionarRestricoesDePaginacao(TypedQuery<?> query, Pageable pageable) {
         int paginaAtual = pageable.getPageNumber();
         int totalDeRegistrosPorPagina = pageable.getPageSize();
         int primeiroRegistroDaPagina = paginaAtual * totalDeRegistrosPorPagina;
