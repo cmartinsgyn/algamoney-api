@@ -45,7 +45,12 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 
         Root<Lancamento> root = criteria.from(Lancamento.class);
         criteria.select(builder.construct(ResumoLancamento.class
-                ,root.get("descricao")
+                , root.get("codigo"),root.get("descricao")
+                , root.get("dataVencimento"),root.get("dataPagamento")
+                , root.get("valor"),root.get("tipo")
+                , root.get("categoria").get("nome")
+                , root.get("pessoa").get("nome")
+
         ));
 
         Predicate[] predicates= criarRestricoes(lancamentoFilter, builder, root);
