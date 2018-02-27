@@ -112,6 +112,13 @@
             <version>3.1.0</version>
         </dependency>
 
+		<!--@ConfigurationProperties-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
     </dependencies>
 
 	<build>
