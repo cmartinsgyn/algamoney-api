@@ -7,21 +7,14 @@ import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("algamoney")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AlgamoneyApiProperty {
 
     private String originPermitida = "http://localhost:8000";
-    public String getOriginPermitida() {
-        return originPermitida;
-    }
-
-    public void setOriginPermitida(String originPermitida) {
-        this.originPermitida = originPermitida;
-    }
-
     private final Seguranca seguranca = new Seguranca();
-    public Seguranca getSeguranca() {
-        return seguranca;
-    }
 
     /**classe*/
     @Data
