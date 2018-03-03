@@ -31,7 +31,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
        // auth.inMemoryAuthentication()
                // .withUser("admin").password("admin").roles("ROLE");
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
     }
 
     @Override
