@@ -32,16 +32,17 @@ public class PessoaResource {
     @Autowired
     private PessoaService pessoaService;
 
+//    @GetMapping
+//    public List<Pessoa> listar(){
+//        return pessoaRepository.findAll();
+//    }
+
     @GetMapping
-    public List<Pessoa> listar(){
-        return pessoaRepository.findAll();
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
+    public Page<Pessoa> pesquisar(@RequestParam(required = false, defaultValue = "%") String nome, Pageable pageable){
+        return pessoaRepository.findByNomeContaining(nome, pageable);
     }
 
-//    @GetMapping
-//    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
-//    public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable){
-//        return pessoaRepository.filtrar(lancamentoFilter, pageable);
-//    }
 
     @PostMapping
     public ResponseEntity<Pessoa> criar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response){
