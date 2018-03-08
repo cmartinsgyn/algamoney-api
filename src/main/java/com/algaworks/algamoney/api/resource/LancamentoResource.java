@@ -35,7 +35,7 @@ public class LancamentoResource {
     private ApplicationEventPublisher publisher;
 
     @Autowired
-    private LancamentoService LancamentoService;
+    private LancamentoService lancamentoService            ;
 
     @Autowired
     private MessageSource messageSource;
@@ -67,7 +67,7 @@ public class LancamentoResource {
 
     @PostMapping
     public ResponseEntity<Lancamento> criar(@Valid @RequestBody Lancamento lancamento, HttpServletResponse response){
-        Lancamento LancamentoSalva = LancamentoService.salvar(lancamento);
+        Lancamento LancamentoSalva = lancamentoService.salvar(lancamento);
         publisher.publishEvent(new RecursoCriadoEvent(this, response, LancamentoSalva.getCodigo()));
         return ResponseEntity.status(HttpStatus.CREATED).body(LancamentoSalva);
 
@@ -89,12 +89,20 @@ public class LancamentoResource {
         lancamentoRepository.delete(codigo);
     }
 
-//    @PutMapping("/{codigo}")
-//    public ResponseEntity<Lancamento>atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento Lancamento){
-//        Lancamento LancamentoSalva = LancamentoService.atualizar(codigo, Lancamento);
-//        return ResponseEntity.ok(LancamentoSalva);
-//    }
-//
+    @PutMapping("/{codigo}")
+    @PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO')")
+    public ResponseEntity<Lancamento>atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento Lancamento){
+
+        try {
+            Lancamento lancamentoSalvo = lancamentoService.atualizar(codigo, Lancamento);
+            return ResponseEntity.ok(lancamentoSalvo);
+
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.notFound().build();
+
+        }
+    }
+
 //    @PutMapping("/{codigo}/ativo")
 //    @ResponseStatus(HttpStatus.NO_CONTENT)
 //    public void atualizarPropriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo){
