@@ -52,7 +52,7 @@ public class LancamentoResource {
         return lancamentoRepository.resumir(lancamentoFilter, pageable);
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/lista")
     public List<Lancamento> listar(){
         return lancamentoRepository.findAll();
     }
