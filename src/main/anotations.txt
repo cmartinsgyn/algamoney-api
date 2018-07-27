@@ -1,0 +1,2 @@
+subir a app algamoney-api pelo jar.
+java -jar algamoney-api-0.0.1-SNAPSHOT.jar --spring.datasource.username=postgres --spring.datasource.password=postgres --algamoney.origin-permitida=http://localhsot:4200
