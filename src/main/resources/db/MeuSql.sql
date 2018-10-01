@@ -1,4 +1,4 @@
-Categoria
+-- Categoria
 
 INSERT INTO categoria (nome) values ('Lazer');
 INSERT INTO categoria (nome) values ('Alimentação');
