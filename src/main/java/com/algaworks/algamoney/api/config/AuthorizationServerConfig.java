@@ -43,7 +43,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorizedGrantTypes("password", "refresh_token")
                 .accessTokenValiditySeconds(1800)
                 .refreshTokenValiditySeconds(3600 * 24);
-    }//1800 3600*24
+    }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -57,10 +57,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authenticationManager(authenticationManager);
     }
 
-    private TokenEnhancer tokenEnhancer() {
-        return new CustomTokenEnhancer();
-    }
-
     @Bean
     public JwtAccessTokenConverter accessTokenConverter(){
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
@@ -72,4 +68,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public TokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
     }
+
+    private TokenEnhancer tokenEnhancer() {
+        return new CustomTokenEnhancer();
+    }
+
 }
