@@ -1,28 +1,38 @@
 package com.algaworks.algamoney.api.config.property;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("algamoney")
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class AlgamoneyApiProperty {
 
-    //http://localhost:8000
     private String originPermitida = "http://localhost:4200";
+
     private final Seguranca seguranca = new Seguranca();
 
-    /**classe*/
-    @Data
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
+    public Seguranca getSeguranca() {
+        return seguranca;
+    }
+
+    public String getOriginPermitida() {
+        return originPermitida;
+    }
+
+    public void setOriginPermitida(String originPermitida) {
+        this.originPermitida = originPermitida;
+    }
+
     public static class Seguranca {
+
         private boolean enableHttps;
+
+        public boolean isEnableHttps() {
+            return enableHttps;
+        }
+
+        public void setEnableHttps(boolean enableHttps) {
+            this.enableHttps = enableHttps;
+        }
+
     }
 }
+
