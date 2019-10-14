@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -26,8 +28,8 @@ public class Lancamento {
     @Column(name = "data_vencimento", columnDefinition = "DATE")
     private LocalDate dataVencimento;
 
-    @Column(name = "data_pagamento", columnDefinition = "DATE")
-    private LocalDate dataPagamento;
+    @Column(name = "data_pagamento", columnDefinition = "TIMESTAMP")
+    private LocalDateTime dataPagamento;
 
     private BigDecimal valor;
 

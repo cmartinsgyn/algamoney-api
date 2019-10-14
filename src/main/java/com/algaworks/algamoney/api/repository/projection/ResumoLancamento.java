@@ -4,6 +4,8 @@ import com.algaworks.algamoney.api.model.TipoLancamento;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 public class ResumoLancamento {
@@ -11,14 +13,14 @@ public class ResumoLancamento {
     private Long codigo;
     private String descricao;
     private LocalDate dataVencimento;
-    private LocalDate dataPagamento;
+    private LocalDateTime dataPagamento;
     private BigDecimal valor;
     private TipoLancamento tipo;
     private String categoria;
     private String pessoa;
 
 
-    public ResumoLancamento(Long codigo, String descricao, LocalDate dataVencimento, LocalDate dataPagamento, BigDecimal valor, TipoLancamento tipo, String categoria, String pessoa) {
+    public ResumoLancamento(Long codigo, String descricao, LocalDate dataVencimento, LocalDateTime dataPagamento, BigDecimal valor, TipoLancamento tipo, String categoria, String pessoa) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.dataVencimento = dataVencimento;
@@ -53,11 +55,11 @@ public class ResumoLancamento {
         this.dataVencimento = dataVencimento;
     }
 
-    public LocalDate getDataPagamento() {
+    public LocalDateTime getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(LocalDate dataPagamento) {
+    public void setDataPagamento(LocalDateTime dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 
